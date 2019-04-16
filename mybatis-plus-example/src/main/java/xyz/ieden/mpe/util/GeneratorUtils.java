@@ -15,12 +15,14 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * Generator 生成器工具类
+ *
  * @author gavin
  * @date 2019/4/2 0:09
  */
 public class GeneratorUtils {
 
-    public static String scanner(String tip) {
+    private static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入").append(tip).append(":");
@@ -34,7 +36,10 @@ public class GeneratorUtils {
         throw new MybatisPlusException("请输入正确的" + tip + "！");
     }
 
-    public static void main(String[] args) {
+    /**
+     * Generator 生成器
+     */
+    public static void generator() {
 
         // 代码生成器
         AutoGenerator generator = new AutoGenerator();
