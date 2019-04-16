@@ -29,7 +29,11 @@ public class TablePreciseShardingConfig implements DataSourceShaidingConfig {
         configuration.getTableRuleConfigs().add(getUserInfoTableRuleConfig());
         configuration.getBindingTableGroups().add("t_book");
         configuration.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new TablePreciseShardingAlgorithm()));
-        return ShardingDataSourceFactory.createDataSource(createDataSourceMap(), configuration, new HashMap<>(), new Properties());
+
+        // Properties
+        Properties properties = new Properties();
+        properties.put("sql.show", true);
+        return ShardingDataSourceFactory.createDataSource(createDataSourceMap(), configuration, new HashMap<>(), properties);
     }
 
     /**

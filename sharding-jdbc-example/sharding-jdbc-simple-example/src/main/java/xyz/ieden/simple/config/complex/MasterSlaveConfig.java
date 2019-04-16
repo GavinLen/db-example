@@ -2,7 +2,7 @@ package xyz.ieden.simple.config.complex;
 
 import io.shardingsphere.api.config.rule.MasterSlaveRuleConfiguration;
 import io.shardingsphere.shardingjdbc.api.MasterSlaveDataSourceFactory;
-import xyz.ieden.simple.component.DataSourceConfig;
+import xyz.ieden.simple.component.DataSourceShaidingConfig;
 import xyz.ieden.simple.util.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author gavin
  * @date 2019/4/14 9:23
  */
-public class MasterSlaveConfig implements DataSourceConfig {
+public class MasterSlaveConfig implements DataSourceShaidingConfig {
     @Override
     public DataSource getDataSource() throws SQLException {
         MasterSlaveRuleConfiguration ruleConfiguration = new MasterSlaveRuleConfiguration();

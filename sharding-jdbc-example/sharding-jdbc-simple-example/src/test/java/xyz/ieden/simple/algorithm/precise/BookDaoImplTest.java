@@ -1,4 +1,4 @@
-package xyz.ieden.simple.dao.impl;
+package xyz.ieden.simple.algorithm.precise;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -9,6 +9,7 @@ import xyz.ieden.common.entity.BookEntity;
 import xyz.ieden.simple.component.DataSourceShaidingConfig;
 import xyz.ieden.simple.config.precise.TablePreciseShardingConfig;
 import xyz.ieden.simple.dao.IBookDao;
+import xyz.ieden.simple.dao.impl.BookDaoImpl;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
