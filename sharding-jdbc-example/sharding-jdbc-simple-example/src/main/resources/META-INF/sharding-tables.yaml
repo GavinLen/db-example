@@ -1,28 +1,35 @@
 dataSources:
-  ds: !!com.alibaba.druid.pool.DruidDataSource
+  ds_0: !!com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/demo_ds
     username: root
     password:
-
+  ds_1: !!com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo_ds
+    username: root
+    password:
 shardingRule:
   tables:
-    t_order: 
-      actualDataNodes: ds.t_order_${0..1}
-      tableStrategy: 
-        inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_${order_id % 2}
-      keyGeneratorColumnName: order_id
-    t_order_item:
-      actualDataNodes: ds.t_order_item_${0..1}
+    t_order:
+      actualDataNodes: ds_${0..1}.t_order_${0..1}
+      databaseStrategy:
+        hint:
+          algorithmClassName: xyz.ieden.simple.algorithm.hint.TableHintShardingAlgorithm
       tableStrategy:
-        inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_item_${order_id % 2}
+        hint:
+          algorithmClassName: xyz.ieden.simple.algorithm.hint.TableHintShardingAlgorithm
+    t_order_item:
+      actualDataNodes: ds_${0..1}.t_order_item_${0..1}
   bindingTables:
-    - t_order,t_order_item
-  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
-  
+  - t_order,t_order_item
+
+  defaultDatabaseStrategy:
+    inline:
+      shardingColumn: user_id
+      algorithmExpression: ds_${user_id % 2}
+  defaultTableStrategy:
+    none:
+
 props:
   sql.show: true

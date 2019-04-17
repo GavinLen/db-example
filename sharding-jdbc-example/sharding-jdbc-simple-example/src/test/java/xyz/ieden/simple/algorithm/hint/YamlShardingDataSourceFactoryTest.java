@@ -1,29 +1,32 @@
 package xyz.ieden.simple.algorithm.hint;
 
+import io.shardingsphere.api.config.rule.ShardingRuleConfiguration;
 import io.shardingsphere.core.yaml.sharding.YamlShardingConfiguration;
-import io.shardingsphere.shardingjdbc.api.yaml.YamlShardingDataSourceFactory;
-import org.junit.Assert;
+import io.shardingsphere.core.yaml.sharding.YamlShardingRuleConfiguration;
 import org.junit.Test;
 
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author gavin
  * @date 2019/4/17 0:05
  */
 public class YamlShardingDataSourceFactoryTest {
-    public static void main(String[] args) throws IOException {
-        File file = new File(YamlShardingDataSourceFactoryTest.class.getResource("/META-INF/sharding-tables.yaml").getFile());
+
+    @Test
+    public void testYamlFile() throws IOException {
+        String dir = System.getProperty("user.dir");
+        File file = new File(dir + "/src/main/resources/META-INF/sharding-tables.yaml");
         YamlShardingConfiguration config = YamlShardingConfiguration.unmarshal(file);
-    }
-    public void main() throws IOException, SQLException {
-//        String dir = System.getProperty("user.dir");
-//        File file = new File(dir + "/src/main/resources/META-INF/sharding-tables.yaml");
-        File file = new File(YamlShardingDataSourceFactoryTest.class.getResource("/META-INF/sharding-tables.yaml").getFile());
-        YamlShardingConfiguration config = YamlShardingConfiguration.unmarshal(file);
-        Assert.assertNotNull(config);
+        Map<String, DataSource> dataSources = config.getDataSources();
+        YamlShardingRuleConfiguration shardingRule = config.getShardingRule();
+        ShardingRuleConfiguration shardingRuleConfiguration = shardingRule.getShardingRuleConfiguration();
+        Map<String, Object> configMap = config.getConfigMap();
+        Properties props = config.getProps();
+        System.out.println("aa");
     }
 }

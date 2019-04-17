@@ -28,6 +28,7 @@ public class TablePreciseShardingConfig implements DataSourceShaidingConfig {
         // 表规则配置
         configuration.getTableRuleConfigs().add(getUserInfoTableRuleConfig());
         configuration.getBindingTableGroups().add("t_book");
+
         configuration.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("id", new TablePreciseShardingAlgorithm()));
 
         // Properties

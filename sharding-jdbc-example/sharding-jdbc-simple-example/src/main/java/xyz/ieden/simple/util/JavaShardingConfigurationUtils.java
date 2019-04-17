@@ -2,6 +2,8 @@ package xyz.ieden.simple.util;
 
 import io.shardingsphere.api.config.rule.ShardingRuleConfiguration;
 import io.shardingsphere.api.config.rule.TableRuleConfiguration;
+import io.shardingsphere.api.config.strategy.HintShardingStrategyConfiguration;
+import xyz.ieden.simple.algorithm.hint.TableHintShardingAlgorithm;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -41,6 +43,7 @@ public class JavaShardingConfigurationUtils {
         // 表规则配置
         ruleConfiguration.getTableRuleConfigs().add(getUserInfoTableRuleConfig());
         ruleConfiguration.getBindingTableGroups().add("t_book");
+        ruleConfiguration.setDefaultTableShardingStrategyConfig(new HintShardingStrategyConfiguration(new TableHintShardingAlgorithm()));
         return ruleConfiguration;
     }
 
