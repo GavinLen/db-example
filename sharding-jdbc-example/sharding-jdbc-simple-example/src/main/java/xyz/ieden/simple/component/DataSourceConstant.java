@@ -22,7 +22,7 @@ public interface DataSourceConstant {
     /**
      * MASTER_PASSWORD
      */
-    String MASTER_PASSWORD = "Root4510@";
+    String MASTER_PASSWORD = "";
 
     // SlaveOne DataSource
     /**
@@ -36,7 +36,7 @@ public interface DataSourceConstant {
     /**
      * SLAVE_ONE_PASSWORD
      */
-    String SLAVE_ONE_PASSWORD = "Root4510@";
+    String SLAVE_ONE_PASSWORD = "";
 
     // SlaveTwo DataSource
     /**
@@ -50,5 +50,5 @@ public interface DataSourceConstant {
     /**
      * SLAVE_TWO_PASSWORD
      */
-    String SLAVE_TWO_PASSWORD = "Root4510@";
+    String SLAVE_TWO_PASSWORD = "";
 }
