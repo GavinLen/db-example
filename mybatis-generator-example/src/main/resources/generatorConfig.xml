@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+    <!-- 指定配置文件 -->
+    <properties resource="jdbc.properties"/>
+
+    <classPathEntry location="${connector.path}"/>
+
+    <context id="mysql-master" targetRuntime="MyBatis3DynamicSql" defaultModelType="conditional">
+        <!-- 配置 JDBC 连接 -->
+        <jdbcConnection driverClass="${jdbc.driver}"
+                        connectionURL="${master_url}"
+                        userId="${master_username}"
+                        password="${master_password}">
+        </jdbcConnection>
+
+        <!-- Java 类型解析器 -->
+        <javaTypeResolver>
+            <!--  -->
+            <property name="forceBigDecimals" value="false"/>
+            <!-- 指定 DATE、TIME、TIMESTAMP 使用 JSR-10 数据类型 -->
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <!-- Java 实体生成 -->
+        <javaModelGenerator targetPackage="xyz.ieden.mybatis.generator.entity" targetProject="src/main/java">
+            <!-- 生成全部字段的构造器 -->
+            <property name="constructorBased" value="true"/>
+            <!--实体生成的位置 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 生成 Setter 方法 -->
+            <property name="immutable" value="false"/>
+            <!-- 实体超类 -->
+            <property name="rootClass" value="xyz.ieden.mybatis.generator.entity.RootClass"/>
+            <!-- 对 CHAR 类型的数据执行 trim 操作 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- SQL 映射文件 -->
+        <sqlMapGenerator targetPackage="classpath:mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 接口文件 -->
+        <javaClientGenerator type="XMLDMAPPER" targetPackage="xyz.ieden.mybatis.generator.mapper" targetProject="src/main/java">
+
+        </javaClientGenerator>
+
+        <table tableName="t_user_info" domainObjectName="UserInfo">
+
+        </table>
+    </context>
+</generatorConfiguration>
